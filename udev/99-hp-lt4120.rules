@@ -1,0 +1,29 @@
+
+ACTION!="add|change", GOTO="mbim_to_qmi_rules_end"
+SUBSYSTEM!="usb|drivers", GOTO="mbim_to_qmi_rules_end"
+
+# load qmi_wwan module
+SUBSYSTEM=="usb", \
+ATTR{idVendor}=="03f0", ATTR{idProduct}=="9d1d", \
+RUN+="/sbin/modprobe -b qmi_wwan"
+
+# force HP lt4120 to configuration #1
+SUBSYSTEM=="usb", \
+ATTR{idVendor}=="03f0", ATTR{idProduct}=="9d1d", \
+ATTR{bConfigurationValue}="1"
+
+# add the new id in the qmi_wwan driver
+SUBSYSTEM=="drivers", \
+ENV{DEVPATH}=="/bus/usb/drivers/qmi_wwan", \
+ATTR{new_id}="03f0 9d1d"
+
+# load qcserial module
+SUBSYSTEM=="usb", \
+ATTR{idVendor}=="03f0", ATTR{idProduct}=="9d1d", \
+RUN+="/sbin/modprobe -b qcserial"
+
+# add the new id in the qcserial driver
+SUBSYSTEM=="drivers", \
+ENV{DEVPATH}=="/bus/usb-serial/drivers/qcserial", \
+ATTR{new_id}="03f0 9d1d"
+LABEL="mbim_to_qmi_rules_end"
