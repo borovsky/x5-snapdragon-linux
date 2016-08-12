@@ -128,6 +128,6 @@ for SUB_DIR in AT CM DT GC OG OP SC TE TF VF VZ; do
     fi
 done
 
-#flash_step
+flash_step
 config_upload_step
 select_config_step
