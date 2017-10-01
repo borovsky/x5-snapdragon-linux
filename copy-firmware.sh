@@ -44,7 +44,7 @@ flash () {
 
 flash_step() {
     DBG "Switching modem to flash mode..."
-    qmicli -p -d "$DEVICE" --dms-change-device-download-mode=5
+    qmicli -p -d "$DEVICE" --dms-hp-change-device-mode=fastboot
     # It usually fails because client closing commands send after device became unavailable
 
     RETRIES=0

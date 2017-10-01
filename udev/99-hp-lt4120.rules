@@ -10,7 +10,7 @@ RUN+="/sbin/modprobe -b qmi_wwan"
 # force HP lt4120 to configuration #1
 SUBSYSTEM=="usb", \
 ATTR{idVendor}=="03f0", ATTR{idProduct}=="9d1d", \
-ATTR{bConfigurationValue}="1"
+ATTR{bConfigurationValue}="3"
 
 # add the new id in the qmi_wwan driver
 SUBSYSTEM=="drivers", \
